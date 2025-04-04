@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 terraform {
-  required_version = ">= 1.0.0"  # Specifies the minimum version of Terraform required
-  
+  required_version = ">= 1.0.0" # Specifies the minimum version of Terraform required
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"  # Ensure the AWS provider version is compatible
+      version = "~> 4.0" # Ensure the AWS provider version is compatible
     }
   }
 }
