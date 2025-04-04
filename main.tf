@@ -1,8 +1,17 @@
-
 provider "aws" {
   region = "ap-southeast-1"
 }
 
+terraform {
+  required_version = ">= 1.0.0"  # Specifies the minimum version of Terraform required
+  
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"  # Ensure the AWS provider version is compatible
+    }
+  }
+}
 terraform {
   backend "s3" {
     bucket = "sctp-ce8-tfstate"
@@ -14,7 +23,7 @@ terraform {
 data "aws_caller_identity" "current" {}
 
 locals {
-  name_prefix = split("/", "${data.aws_caller_identity.current.arn}")[1]
+  name_prefix = split("/", data.aws_caller_identity.current.arn)[1]
   account_id  = data.aws_caller_identity.current.account_id
 }
 
